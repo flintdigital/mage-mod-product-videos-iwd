@@ -1,0 +1,83 @@
+<?php $videos = $this->getVideosCollection(); ?>
+
+<?php if(isset($videos) && !empty($videos) && Mage::getStoreConfig('iwd_productvideo/general/enabled') ): ?>
+    <div style="display:none !important;">
+        <div id="iwd-pv-video-box">
+            <div class="iwd-pv-video">
+                <div class="iwd-pv-video-block"></div>
+                <div class="iwd-pv-video-preloader-wrapper">
+                    <div class="iwd-pv-video-preloader"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="iwd-pv-thumbnails-box">
+            <?php foreach($videos as $video): ?>
+                <li class="iwd-pv-item">
+                    <i class="iwd-pv-icon-play fa fa-1x fa-play"></i>
+                    <a class="iwd-pv-thumb-link" href="#" title="<?php echo $video->getTitle(); ?>" data-iwd-video-id="<?php echo $video->getVideoId(); ?>">
+                        <img src="<?php echo $this->getImageUrl($video); ?>" alt=" ">
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </div>
+
+        <div id="iwd-pv-popup-box">
+            <div class="pv-iwd-modal fade" id="iwd_productvideo_popup"  tabindex="-1" role="dialog" aria-labelledby="iwd_productvideo" aria-hidden="true">
+                <div class="pv-iwd-modal-dialog">
+                    <div class="pv-iwd-modal-content">
+                        <div class="pv-iwd-modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i><span aria-hidden="true">&times;</span></button>
+                            <h4 class="pv-iwd-modal-title"></h4>
+                        </div>
+                        <div class="pv-iwd-modal-body">
+                            <div class="iwd-pv-video-block"></div>
+                            <div class="iwd-pv-video-description"></div>
+                        </div>
+                        <div class="iwd-pv-video-preloader-wrapper">
+                            <div class="iwd-pv-video-preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            //<![CDATA[
+            if(typeof(jQueryIWD) == "undefined"){if(typeof(jQuery) != "undefined") {jQueryIWD = jQuery;}}
+            if (typeof(jQueryIWD) != "undefined") {
+                jQueryIWD(document).ready(function(){
+                    <?php if($this->getIsPreLoadVideos()): ?>
+                    <?php $frontend_player = Mage::app()->getLayout()->createBlock('iwd_productvideo/frontend_player')->setTemplate('iwd/productvideo/player.phtml');?>
+                    <?php foreach($videos as $video): ?>
+                    <?php
+                        $description = trim(addslashes(preg_replace('/\s+/', ' ', $video->getDescription())));
+                        $title = trim(addslashes(preg_replace('/\s+/', ' ', $video->getTitle())));
+                        $embed_code = trim(addslashes(preg_replace('/\s+/', ' ', $frontend_player->setData('video', $video)->toHtml())));
+                    ?>
+
+                    IWD.PV.uploadedVideos['<?php echo $video->getImage(); ?>'] = {
+                        "id":"<?php echo $video->getVideoId() ?>",
+                        "description":"<?php echo $description; ?>",
+                        "title":"<?php echo $title; ?>",
+                        "type":"<?php echo (Mage::helper('iwd_productvideo')->isLocalVideoPlayer($video)) ? 'local' : $video->getVideoType() ?>",
+                        "embed_code":'<?php echo $embed_code; ?>'
+                    };
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                    IWD.PV.Frontend.inPopup = <?php echo $this->getShowInPopup(); ?>;
+                    IWD.PV.Frontend.thumbnailsPosition = "<?php echo $this->getThumbnailsPosition(); ?>";
+                    IWD.PV.Frontend.urlGetVideo = "<?php echo $this->getUrlLoadVideo(); ?>?isAjax=true";
+                    IWD.PV.Frontend.imageBox = "<?php echo $this->getImageBox(); ?>";
+                    IWD.PV.Frontend.thumbnailsBox = "<?php echo $this->getThumbnailsBox(); ?>";
+                    IWD.PV.Frontend.videoIdAsFirstImage = "<?php echo $this->getVideoIdAsFirstImage(); ?>";
+                    IWD.PV.Frontend.fixedThumbnailsSize = <?php echo (bool)Mage::getStoreConfig('iwd_productvideo/integration/fixed_thumbnails_size') ? 'true' : 'false'?>;
+                    IWD.PV.Frontend.init();
+                });
+            } else {
+                console.log('IWD jQuery undefined');
+            }
+            //]]>
+        </script>
+    </div>
+<?php endif; ?>

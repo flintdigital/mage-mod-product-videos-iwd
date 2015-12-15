@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <iwdall>
+            <label>IWD Extensions</label>
+            <sort_order>210</sort_order>
+            <class>iwd-block</class>
+        </iwdall>
+    </tabs>
+    <sections>
+        <iwd_productvideo translate="label" module="iwd_productvideo">
+            <label>Product Video</label>
+            <tab>iwdall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>226</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general>
+                    <label>General</label>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version>
+                            <label>Version</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_model>iwd_productvideo/system_config_form_fieldset_extensions</frontend_model>
+                        </version>
+                        <user_guide>
+                            <label>Documentation</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_model>iwd_productvideo/system_config_form_fieldset_documentations</frontend_model>
+                        </user_guide>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enabled / disabled extension]]></comment>
+                        </enabled>
+                    </fields>
+                </general>
+                <video translate="label">
+                    <label>Video</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <in_popup translate="label">
+                            <label>Show Video In Popup</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment><![CDATA[YES - show video in popup<br/>NO - show in image block]]></comment>
+                        </in_popup>
+                        <!--<local_player translate="label">-->
+                            <!--<label>HTML5 Video Player</label>-->
+                            <!--<frontend_type>select</frontend_type>-->
+                            <!--<source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <!--<sort_order>20</sort_order>-->
+                            <!--<show_in_default>1</show_in_default>-->
+                            <!--<show_in_website>1</show_in_website>-->
+                            <!--<show_in_store>1</show_in_store>-->
+                            <!--<comment><![CDATA[For Youtube and Vimeo video:<br/>YES - use HTML5 video player (if it's possible)<br/>NO - always use embed video code]]></comment>-->
+                        <!--</local_player>-->
+                        <autoplay>
+                            <label>Auto Play Video After Load</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[YES - auto play video after load<br/>NO - play video after click button play]]></comment>
+                        </autoplay>
+                        <youtube_rel>
+                            <label>Show Related Videos</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[For Youtube:<br/>show related videos after the end of the original video]]></comment>
+                        </youtube_rel>
+                        <video_as_first_image>
+                            <label>Video As The First 'Image'</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[]]></comment>
+                        </video_as_first_image>
+                        <preload_videos>
+                            <label>Preload All Video Players</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Load all video players when loading the page]]></comment>
+                        </preload_videos>
+                    </fields>
+                </video>
+                <integration translate="label">
+                    <label>Integration</label>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <youtube_api_key translate="label">
+                            <label>Youtube API key</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[To use button Autofill Information, please add proper API server key using this link https://developers.google.com/youtube/v3/getting-started]]></comment>
+                        </youtube_api_key>
+                        <image_box translate="label">
+                            <label>Image Box</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[CSS selector for product image box<br/>Ex: .product-img-box .product-image]]></comment>
+                        </image_box>
+                        <thumbnails_box translate="label">
+                            <label>Thumbnails Box</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[CSS selector for thumbnails box<br/>Ex: .more-views ul]]></comment>
+                        </thumbnails_box>
+                        <thumbnails_position translate="label">
+                            <label>Thumbnails Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>iwd_productvideo/system_config_sort</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Before - show videos before images<br/>After - show videos after images]]></comment>
+                        </thumbnails_position>
+                    </fields>
+                </integration>
+            </groups>
+        </iwd_productvideo>
+    </sections>
+</config>

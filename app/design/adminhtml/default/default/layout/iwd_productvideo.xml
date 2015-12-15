@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <iwd_productvideo_adminhtml_handle>
+        <reference name="head">
+            <action method="addLinkRel"><rel>stylesheet</rel><href>//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css</href></action>
+
+            <action method="addItem"><type>js</type><name>iwd/productvideo/iwd-jquery-ui.min.js</name></action>
+            <action method="addItem"><type>js</type><name>iwd/all/modal.js</name></action>
+
+            <action method="addItem"><type>js</type><name>iwd/productvideo/product-video.js</name></action>
+            <action method="addItem"><type>js</type><name>iwd/productvideo/video.js</name></action>
+            <action method="addItem"><type>js</type><name>iwd/productvideo/edit.js</name></action>
+
+            <action method="addItem"><type>skin_css</type><name>iwd/productvideo/video-js.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>iwd/productvideo/style.css</name></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="iwd.product.video" after="-" template="iwd/productvideo/edit/init.phtml"/>
+        </reference>
+    </iwd_productvideo_adminhtml_handle>
+
+    <adminhtml_iwd_productvideo_video_new>
+        <update handle="iwd_productvideo_adminhtml_handle"/>
+    </adminhtml_iwd_productvideo_video_new>
+
+    <adminhtml_iwd_productvideo_video_edit>
+        <update handle="iwd_productvideo_adminhtml_handle"/>
+
+        <reference name="content">
+            <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                <action method="setUseConfirm"><params>0</params></action>
+            </block>
+        </reference>
+    </adminhtml_iwd_productvideo_video_edit>
+
+    <adminhtml_catalog_product_edit>
+        <reference name="head">
+            <action method="addLinkRel"><rel>stylesheet</rel><href>//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css</href></action>
+            <action method="addJs"><script>iwd/productvideo/attachvideo.js</script></action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+</layout>

@@ -1,0 +1,38 @@
+<div class="pv-iwd-modal fade" id="iwd_productvideo_popup" tabindex="-1" role="dialog" aria-labelledby="iwd_productvideo" aria-hidden="true">
+    <div class="pv-iwd-modal-dialog">
+        <div class="pv-iwd-modal-content">
+            <div class="pv-iwd-modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i><span aria-hidden="true">&times;</span></button>
+                <h4 class="pv-iwd-modal-title"></h4>
+            </div>
+            <div class="pv-iwd-modal-body">
+
+                <div class="iwd-pv-video-block"></div>
+                <div class="iwd-pv-video-description"></div>
+            </div>
+            <div class="iwd-pv-video-preloader-wrapper">
+                <div class="iwd-pv-video-preloader"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    if(typeof(jQueryIWD) == "undefined"){if(typeof(jQuery) != "undefined") {jQueryIWD = jQuery;}}
+    if (typeof(jQueryIWD) != "undefined") {
+        jQueryIWD(document).ready(function () {
+            IWD.PV.Admin.urlGetVideo = "<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/iwd_productvideo_player/getvideo')?>?isAjax=true";
+            IWD.PV.Admin.updateVideoPositionUrl = '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/iwd_productvideo_productvideo/update_video_position'); ?>?isAjax=true';
+            IWD.PV.Admin.youtubeParseUrl = <?php echo Mage::helper('iwd_productvideo/youtube')->getUrlParseRegex()?>;
+            IWD.PV.Admin.vimeoParseUrl = <?php echo Mage::helper('iwd_productvideo/vimeo')->getUrlParseRegex()?>;
+            <?php if( Mage::getStoreConfig('iwd_productvideo/integration/youtube_api_key' ) ):?>
+            IWD.PV.Admin.youtubeAPIKey = '<?php echo Mage::getStoreConfig('iwd_productvideo/integration/youtube_api_key'); ?>';
+            <?php endif; ?>
+            IWD.PV.Admin.init();
+        });
+    } else {
+        console.log('IWD jQuery undefined');
+    }
+    //]]>
+</script>

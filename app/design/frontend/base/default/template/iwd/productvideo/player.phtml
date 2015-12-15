@@ -1,0 +1,28 @@
+<?php
+$helper = $this->helper('iwd_productvideo');
+$video = $this->getVideo();
+$protocol = Mage::app()->getStore()->isCurrentlySecure() ? "https:" : "http:";
+?>
+
+<?php if ($helper->isLocalVideoPlayer($video)): ?>
+    <video class="iwd-pv-player local-video-player video-js vjs-default-skin" controls
+           preload="none" width="100%" height="100%" <?php if($this->isAutoplayVideo()): ?>autoplay<?php endif; ?>
+           poster="<?php echo $helper->GetMediaImageUrl($video['image']) ?>" data-setup="{}">
+        <?php echo $helper->GetVideoSource($video); ?>
+    </video>
+<?php else: ?>
+    <?php if ($video['video_type'] == 'youtube'): ?>
+        <iframe id="youtube_video_player_<?php echo $video["video_id"] ?>"
+                class="iwd-pv-player youtube-video-player"
+                src="<?php echo $protocol; ?>//www.youtube.com/embed/<?php echo $video['url'] ?>?enablejsapi=1<?php if($this->isAutoplayVideo()): ?>&autoplay=1<?php endif; ?><?php if($this->notShowRelatedVideo()): ?>&rel=0<?php endif; ?>"
+                width="100%" height="100%" frameborder="0"
+                webkitallowfullscreen mozallowfullscreen allowfullscreen>
+        </iframe>
+    <?php elseif ($video['video_type'] == 'vimeo'): ?>
+        <iframe class="iwd-pv-player vimeo-video-player"
+                src="<?php echo $protocol; ?>//player.vimeo.com/video/<?php echo $video['url']; ?><?php if($this->isAutoplayVideo()): ?>?autoplay=1<?php endif; ?>"
+                width="100%" height="100%" frameborder="0"
+                webkitallowfullscreen mozallowfullscreen allowfullscreen>
+        </iframe>
+    <?php endif; ?>
+<?php endif; ?>

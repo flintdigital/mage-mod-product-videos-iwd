@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <IWD_Productvideo>
+            <version>2.4.0</version>
+        </IWD_Productvideo>
+    </modules>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <iwd_productvideo after="Mage_Adminhtml">IWD_Productvideo_Adminhtml</iwd_productvideo>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <productvideo_check_related>
+                        <type>singleton</type>
+                        <class>iwd_productvideo/observer</class>
+                        <method>checkRequiredModules</method>
+                    </productvideo_check_related>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <layout>
+            <updates>
+                <iwd_productvideo>
+                    <file>iwd_productvideo.xml</file>
+                </iwd_productvideo>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <iwd_productvideo>
+                <use>standard</use>
+                <args>
+                    <module>IWD_Productvideo</module>
+                    <frontName>iwd_productvideo</frontName>
+                </args>
+            </iwd_productvideo>
+        </routers>
+        <layout>
+           <updates>
+                <iwd_productvideo>
+                    <file>iwd_productvideo.xml</file>
+                </iwd_productvideo>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <helpers>
+            <catalog>
+                <rewrite>
+                    <image>IWD_Productvideo_Helper_CatalogImage</image>
+                </rewrite>
+            </catalog>
+            <iwd_productvideo>
+                <class>IWD_Productvideo_Helper</class>
+            </iwd_productvideo>
+        </helpers>
+
+        <blocks>
+            <iwd_productvideo>
+                <class>IWD_Productvideo_Block</class>
+            </iwd_productvideo>
+
+            <catalog>
+                <rewrite>
+                    <product_view_media>IWD_Productvideo_Block_Frontend_Media</product_view_media>
+                </rewrite>
+            </catalog>
+
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_edit_tabs>IWD_Productvideo_Block_Adminhtml_Tabs</catalog_product_edit_tabs>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <models>
+            <iwd_productvideo>
+                <class>IWD_Productvideo_Model</class>
+                <resourceModel>iwd_productvideo_mysql4</resourceModel>
+            </iwd_productvideo>
+            <iwd_productvideo_mysql4>
+                <class>IWD_Productvideo_Model_Mysql4</class>
+                <entities>
+                    <video>
+                        <table>iwd_video</table>
+                    </video>
+                    <product_video>
+                        <table>iwd_product_video</table>
+                    </product_video>
+                </entities>
+            </iwd_productvideo_mysql4>
+        </models>
+
+        <resources>
+            <iwd_productvideo_setup>
+                <setup>
+                    <module>IWD_Productvideo</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </iwd_productvideo_setup>
+
+            <iwd_productvideo_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </iwd_productvideo_write>
+
+            <iwd_productvideo_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </iwd_productvideo_read>
+        </resources>
+    </global>
+
+    <default>
+        <iwd_productvideo>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <video>
+                <local_player>0</local_player>
+                <in_popup>0</in_popup>
+                <autoplay>1</autoplay>
+                <youtube_rel>0</youtube_rel>
+                <video_as_first_image>0</video_as_first_image>
+                <preload_videos>0</preload_videos>
+            </video>
+            <integration>
+                <image_box>.product-img-box .product-image</image_box>
+                <thumbnails_box>.more-views ul</thumbnails_box>
+                <thumbnails_position>before</thumbnails_position>
+                <fixed_thumbnails_size>0</fixed_thumbnails_size>
+                <thumbnails_width></thumbnails_width>
+                <thumbnails_height></thumbnails_height>
+            </integration>
+        </iwd_productvideo>
+    </default>
+</config>

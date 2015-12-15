@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <iwdall>
+                    <children>
+                        <iwd_productvideo module="iwd_productvideo">
+                            <title>Product Videos</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/iwd_productvideo_video/index</action>
+                            <children>
+                                <videomanager module="iwd_productvideo">
+                                    <title>Video Manager</title>
+                                    <sort_order>10</sort_order>
+                                    <action>adminhtml/iwd_productvideo_video/index</action>
+                                </videomanager>
+                                <productmanager module="iwd_productvideo">
+                                    <title>Product Manager</title>
+                                    <sort_order>20</sort_order>
+                                    <action>adminhtml/iwd_productvideo_productvideo/index</action>
+                                </productmanager>
+                                <iwd_pv_config module="iwd_productvideo">
+                                    <title>Extension Configuration</title>
+                                    <sort_order>30</sort_order>
+                                    <action>adminhtml/system_config/edit/section/iwd_productvideo</action>
+                                </iwd_pv_config>
+                            </children>
+                        </iwd_productvideo>
+                    </children>
+                </iwdall>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <all>Allow everything</all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <iwd_productvideo translate="title" module="iwd_productvideo">
+                                        <title>Product Video</title>
+                                    </iwd_productvideo>
+                                </children>
+                            </config>
+                            <iwdall>
+                                <children>
+                                    <iwd_productvideo translate="title">
+                                        <title>Product Video</title>
+                                        <children>
+                                            <videomanager>
+                                                <title>Video Manager</title>
+                                            </videomanager>
+                                            <productmanager>
+                                                <title>Product Manager</title>
+                                            </productmanager>
+                                            <iwd_pv_config>
+                                                <title>Extension Configuration</title>
+                                            </iwd_pv_config>
+                                        </children>
+                                    </iwd_productvideo>
+                                </children>
+                            </iwdall>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
