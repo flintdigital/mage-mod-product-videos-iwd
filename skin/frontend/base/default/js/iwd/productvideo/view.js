@@ -41,7 +41,8 @@ IWD.PV.Frontend = {
     insertVideoBox: function(){
         $ji(IWD.PV.Frontend.imageBox).find('.iwd-pv-video').remove();
         var video_box = $ji('#iwd-pv-video-box').html();
-        $ji(IWD.PV.Frontend.imageBox).append(video_box);
+        //$ji(IWD.PV.Frontend.imageBox).append(video_box); //UNCOMMENT THIS LINE IF WITH A THEME OTHER THAN ZEBRA.
+        $ji(IWD.PV.Frontend.thumbnailsBoxAfter).append(video_box); //COMMENT THIS LINE IF WITH A THEME OTHER THAN ZEBRA.
         $ji('#iwd-pv-video-box').empty();
     },
 
@@ -57,13 +58,13 @@ IWD.PV.Frontend = {
         });
     },
 
-//    insertVideoThumbnails: function(box, video_box){
-//        if(IWD.PV.Frontend.thumbnailsPosition == 'after'){
-//            $ji(box).append(video_box);
-//        } else {
-//            $ji(box).prepend(video_box);
-//        }
-//    },
+   insertVideoThumbnails: function(box, video_box){
+       if(IWD.PV.Frontend.thumbnailsPosition == 'after'){
+           $ji(box).append(video_box);
+       } else {
+           $ji(box).prepend(video_box);
+       }
+   },
 
     insertPopupBox: function(){
         $ji('body > #iwd_productvideo_popup').remove();
