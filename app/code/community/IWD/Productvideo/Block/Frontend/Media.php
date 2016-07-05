@@ -5,7 +5,15 @@ class IWD_Productvideo_Block_Frontend_Media extends Mage_Catalog_Block_Product_V
     public function getGalleryImages()
     {
         if($this->_all === null) {
-            $collection = parent::getGalleryImages();
+            if(class_exists('FlintDigital_SimpleProductData_Block_Product_View_Media')) {
+                $block = new FlintDigital_SimpleProductData_Block_Product_View_Media();
+                $collection = $block->getGalleryImages();
+            }
+
+            else {
+                $collection = parent::getGalleryImages();
+            }
+
             if (empty($collection) || $collection->getSize() == 0) {
                 $productMediaConfig = Mage::getModel('catalog/product_media_config');
                 $image = $this->getProduct()->getImage();

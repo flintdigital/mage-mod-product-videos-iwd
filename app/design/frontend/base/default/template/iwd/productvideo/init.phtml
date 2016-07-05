@@ -72,6 +72,9 @@
                     IWD.PV.Frontend.thumbnailsBox = "<?php echo $this->getThumbnailsBox(); ?>";
                     IWD.PV.Frontend.videoIdAsFirstImage = "<?php echo $this->getVideoIdAsFirstImage(); ?>";
                     IWD.PV.Frontend.fixedThumbnailsSize = <?php echo (bool)Mage::getStoreConfig('iwd_productvideo/integration/fixed_thumbnails_size') ? 'true' : 'false'?>;
+                    if(IWD.PV.Frontend.thumbnailsPosition =="after"){
+                        IWD.PV.Frontend.thumbnailsBoxAfter = VidBox;
+                    }
                     IWD.PV.Frontend.init();
                 });
             } else {
